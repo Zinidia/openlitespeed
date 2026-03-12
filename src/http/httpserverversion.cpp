@@ -19,10 +19,10 @@
 
 #include <config.h>
 
-const char HttpServerVersion::s_pVersion[] = "LiteSpeed/" PACKAGE_VERSION
+const char HttpServerVersion::s_pVersion[] = "Vectra/" PACKAGE_VERSION
         " Open";
 
-int  HttpServerVersion::s_iVersionLen = 9;
+int  HttpServerVersion::s_iVersionLen = 6;
 
 void HttpServerVersion::hideDetail(int hide)
 {

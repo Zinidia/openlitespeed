@@ -1886,7 +1886,7 @@ static char s_errUseSSL[] =
     "the plain HTTP scheme to access this URL.<br />\n"
     "<blockquote>Hint: The URL should starts with <b>https</b>://</blockquote> </p>\n"
     "<hr />\n"
-    "Powered By LiteSpeed Web Server<br />\n"
+    "Powered By Vectra Web Server<br />\n"
     "</body></html>\n";
 
 static char s_redirectSSL1[] =
@@ -1896,7 +1896,7 @@ static char s_redirectSSL1[] =
 static char s_redirectSSL2[] =
     "\r\nCache-Control: private, no-cache, max-age=0\r\n"
     "Pragma: no-cache\r\n"
-    "Server:LiteSpeed\r\n"
+    "Server:Vectra\r\n"
     "Content-Length: 0\r\n"
     "Connection: Close\r\n\r\n";
 

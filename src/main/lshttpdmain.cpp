@@ -92,7 +92,7 @@
  */
 #define BUILDTIME  "built: Thu Jan  8 15:41:40 UTC 2026"
 
-static const char s_pVersionFull[] = "LiteSpeed/" PACKAGE_VERSION
+static const char s_pVersionFull[] = "Vectra/" PACKAGE_VERSION
         " Open (" LS_MODULE_VERSION_INFO_ONELINE ") BUILD (" BUILDTIME ")";
 static const char *getVersionFull() {   return s_pVersionFull;  }
 
@@ -785,7 +785,7 @@ int LshttpdMain::testRunningServer()
                 ++count;
                 if (count >= 10)
                 {
-                    perr("LiteSpeed Web Server is running!");
+                    perr("Vectra Web Server is running!");
                     return 2;
                 }
                 ls_sleep(100);
@@ -928,7 +928,7 @@ int LshttpdMain::init(int argc, char *argv[])
     {
         //LS_ERROR("Failed to determine the root directory of server!" ));
         fprintf(stderr,
-                "Can't determine the Home of LiteSpeed Web Server, exit!\n");
+                "Can't determine the Home of Vectra Web Server, exit!\n");
         return 1;
     }
 
@@ -966,7 +966,7 @@ int LshttpdMain::init(int argc, char *argv[])
     if (procConfig.getUid() <= 10 || procConfig.getGid() < 10)
     {
         MainServerConfig  &MainServerConfigObj =  MainServerConfig::getInstance();
-        LS_ERROR("It is not allowed to run LiteSpeed web server on behalf of a "
+        LS_ERROR("It is not allowed to run Vectra web server on behalf of a "
                  "privileged user/group, user id must not be "
                  "less than 50 and group id must not be less than 10."
                  "UID of user '%s' is %d, GID of group '%s' is %d. "
@@ -1008,7 +1008,7 @@ int LshttpdMain::init(int argc, char *argv[])
         if (m_pidFile.writePid(m_pid))
             return 2;
         PidFile varRunPid;
-        varRunPid.writePidFile("/var/run/openlitespeed.pid", m_pid);
+        varRunPid.writePidFile("/var/run/vectra.pid", m_pid);
         varRunPid.closePidFile();
 
         if (!MainServerConfig::getInstance().getDisableWebAdmin())
@@ -1054,7 +1054,7 @@ int LshttpdMain::init(int argc, char *argv[])
 #ifdef IS_LSCPD
     strcpy(argv[0], "lscpd (lscpd - main)");
 #else
-    strcpy(argv[0], "openlitespeed (lshttpd - main)");
+    strcpy(argv[0], "vectra (lshttpd - main)");
 #endif
 #endif
     //if ( !m_noCrashGuard && ( m_pBuilder->getCrashGuard() ))
@@ -1330,7 +1330,7 @@ void LshttpdMain::onNewChildStart(ChildProc * pProc)
 #ifdef IS_LSCPD
     snprintf(argv0, 80, "lscpd (lscpd - #%02d)", pProc->m_iProcNo);
 #else
-    snprintf(argv0, 80, "openlitespeed (lshttpd - #%02d)", pProc->m_iProcNo);
+    snprintf(argv0, 80, "vectra (lshttpd - #%02d)", pProc->m_iProcNo);
 #endif
 
     LsShmPool::setPid(pProc->m_pid);
@@ -1440,7 +1440,7 @@ int LshttpdMain::checkRestartReq()
                 if (uname(&s_uname) == -1)
                     LS_WARN("uname() failed!");
                 ls_snprintf(achSubject, sizeof(achSubject) - 1,
-                            "LiteSpeed Web server %s on %s restarts "
+                            "Vectra Web server %s on %s restarts "
                             "automatically to fix 503 Errors",
                             MainServerConfigObj.getServerName(), s_uname.nodename);
                 EmailSender::send(
@@ -1606,7 +1606,7 @@ void LshttpdMain::gracefulRestart()
         umask(022);
         LS_NOTICE( "Starting new instance: execute '%s'.", achCmd);
         if (execl(achCmd, "litespeed", NULL))
-            LS_ERROR("Failed to start new instance of LiteSpeed Web server!");
+            LS_ERROR("Failed to start new instance of Vectra Web server!");
         _exit(0);
     }
     if (pid == -1)

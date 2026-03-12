@@ -835,7 +835,7 @@ int HttpServerImpl::generateProcessReport(int fd)
     days = delta / 24;
     char *p = achBuf;
     p += ls_snprintf(p, &achBuf[4096] - p,
-                     "VERSION: LiteSpeed Web Server/%s/%s\n",
+                     "VERSION: Vectra Web Server/%s/%s\n",
                      "Open",
                      PACKAGE_VERSION);
     p += ls_snprintf(p, &achBuf[4096] - p, "UPTIME:");
@@ -1717,7 +1717,7 @@ int HttpServerImpl::gracefulShutdown()
     m_lStartTime = -1;
     if (restartMark(1))
     {
-        LS_NOTICE("New litespeed process is ready, stop listeners");
+        LS_NOTICE("New vectra process is ready, stop listeners");
         m_listeners.stopAll();
         listenerStopped = 1;
     }
